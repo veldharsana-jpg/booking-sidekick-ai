@@ -14,7 +14,153 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          booking_reference: string | null
+          class_type: string | null
+          created_at: string | null
+          destination_station: string
+          id: string
+          passengers: number | null
+          source_station: string
+          status: string | null
+          train_name: string
+          train_number: string
+          travel_date: string
+          user_id: string
+        }
+        Insert: {
+          booking_reference?: string | null
+          class_type?: string | null
+          created_at?: string | null
+          destination_station: string
+          id?: string
+          passengers?: number | null
+          source_station: string
+          status?: string | null
+          train_name: string
+          train_number: string
+          travel_date: string
+          user_id: string
+        }
+        Update: {
+          booking_reference?: string | null
+          class_type?: string | null
+          created_at?: string | null
+          destination_station?: string
+          id?: string
+          passengers?: number | null
+          source_station?: string
+          status?: string | null
+          train_name?: string
+          train_number?: string
+          travel_date?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_messages: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      search_history: {
+        Row: {
+          created_at: string | null
+          destination_station: string
+          id: string
+          search_type: string | null
+          source_station: string
+          travel_date: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          destination_station: string
+          id?: string
+          search_type?: string | null
+          source_station: string
+          travel_date: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          destination_station?: string
+          id?: string
+          search_type?: string | null
+          source_station?: string
+          travel_date?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "search_history_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
